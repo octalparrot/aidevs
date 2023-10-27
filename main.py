@@ -1,5 +1,6 @@
 # main.py
 import requests
+import json
 from decouple import config
 
 apikey = config('API_KEY')
@@ -39,11 +40,20 @@ def submit_answer(token, answer):
 if __name__ == "__main__":
     helloapi_value = input("Podaj wartość dla zdania: ")
     token = get_token(helloapi_value)
-    
+
     if token:
         task_data = get_task_data(token)
         print("Dane zadania:", task_data)
 
-        answer = input("Wprowadź swoją odpowiedź: ")
-        result = submit_answer(token, answer)
-        print("Odpowiedź serwera:", result)
+        answer_string = input("Wprowadź swoją odpowiedź: ")
+        try:
+            # Przekształć wprowadzony ciąg na słownik
+            answer_dict = json.loads(answer_string)
+            
+            # Przekształć słownik na odpowiedź do wysłania
+            answer_to_send = answer_dict["answer"]
+            
+            result = submit_answer(token, answer_to_send)
+            print("Odpowiedź serwera:", result)
+        except json.JSONDecodeError:
+            print("Nieprawidłowy format odpowiedzi. Upewnij się, że wprowadziłeś poprawny format JSON.")
