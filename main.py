@@ -42,6 +42,7 @@ if __name__ == "__main__":
     token = get_token(helloapi_value)
 
     if token:
+        print(f"Uzyskany token: {token}")  # <-- Dodana linia do wydruku tokena
         task_data = get_task_data(token)
         print("Dane zadania:", task_data)
 
