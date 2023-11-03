@@ -27,7 +27,7 @@ def get_task_data(token):
     )
     if response.status_code == 200:
         data = response.json()
-        print(f"Task data: {data}")  # Add this line
+#        print(f"Task data: {data}")  # Add this line
         return data
     else:
         print(f"Error: {response.status_code} - {response.text}")
