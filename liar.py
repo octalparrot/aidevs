@@ -50,11 +50,13 @@ def evaluate_answer(question, answer):
             prompt=f"Question: {question}\nAnswer: {answer}\nIs the answer correct?",
             max_tokens=10
         )
-        result = response['choices'][0]['text'].strip()
-        return result
+        result = response['choices'][0]['text'].strip().upper()
+        return "YES" if result == "YES" else "NO"
     except Exception as e:
         print(f"OpenAI error: {e}")
         return None
+
+
 # Lista pytań
 questions = [
     "What is the capital of France?",
@@ -80,11 +82,11 @@ if __name__ == "__main__":
         print("Server response:", question_response)
         
         server_answer = question_response.get('answer', '')
-        evaluation = evaluate_answer(question, server_answer)
-        print(f"Evaluation result: {evaluation}")
+        truth_value = evaluate_answer(question, server_answer)
+        print(f"Evaluation result: {truth_value}")
         
-        truth_value = None
-        while truth_value not in ["YES", "NO"]:
-            truth_value = input("Is the answer true? (YES/NO): ").upper()
-        result = submit_answer(token, truth_value)
-        print("Server response:", result)
+        if truth_value:
+            result = submit_answer(token, truth_value)
+            print("Server response:", result)
+        else:
+            print("Could not evaluate the answer.")
