@@ -77,7 +77,9 @@ if __name__ == "__main__":
         # Pobierz zdania z API
         sentences = get_sentences(token)
         if sentences:
-            print(f"Received sentences: {sentences}")
+            print("Received sentences:")
+            for i, sentence in enumerate(sentences, start=1):  # Dodane indeksowanie zaczynając od 1
+                print(f"{i}. {sentence}")  # Wydrukuj numer i zdanie
             
             moderation_results = moderate_sentences(sentences)
             print(f"Moderation results: {moderation_results}")
