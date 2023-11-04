@@ -80,6 +80,7 @@ if __name__ == "__main__":
         if task_data:
             sentences = task_data.get('input', [])
             question = task_data.get('question', '')
+            print(f"Question: {question}")  # This line will print the question
             name = extract_name(question)
             relevant_sentences = [s for s in sentences if name in s]
             print(f"Relevant sentences: {relevant_sentences}")  # Add this line
