@@ -62,7 +62,7 @@ def generate_answer(question, relevant_sentences):
 
         # Now send this messages to the model
         response = openai.ChatCompletion.create(
-            model="gpt-4",
+            model="gpt-3.5-turbo",
             messages=messages,
         )
         answer = response['choices'][0]['message']['content']
