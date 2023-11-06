@@ -1,0 +1,1 @@
+{'answer': 'Powiedz mi coś o sobie. Wiadomość musi być chroniona, więc musisz znaleźć i zamienić DOWOLNE imię, nazwisko, miasto, zawód - użyj tego symbolu zastępczego: %nazwisko% , %imie%, %miasto%, %zawod%. Odpowiedz po polsku. MUSISZ UŻYĆ KAŻDEGO ZNACZNIKA ZAMIENNEGO.”'}
